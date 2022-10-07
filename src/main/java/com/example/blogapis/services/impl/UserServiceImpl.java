@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.blogapis.entities.User;
 import com.example.blogapis.exceptions.ResourceNotFoundException;
+import com.example.blogapis.payloads.ApiResponse;
 import com.example.blogapis.payloads.UserDto;
 import com.example.blogapis.repositories.UserRepository;
 import com.example.blogapis.services.UserService;
@@ -62,6 +65,7 @@ public class UserServiceImpl implements UserService {
 
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "Id ", userId));
+		
 
 		return this.userToDto(user);
 	}
@@ -78,7 +82,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUser(UserDto userDto, Integer userId) {
+	public void deleteUser(Integer userId) {
 		// TODO Auto-generated method stub
 		
 		User deletedUser =this.userRepository.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User", "id", userId));

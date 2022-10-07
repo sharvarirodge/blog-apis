@@ -13,13 +13,17 @@ public interface UserService {
 //	}
 	
 	UserDto createUser(UserDto userDto);
+	
 	UserDto updateUser(UserDto userDto,Integer userId);
+	
 	//UserDto deleteUser(UserDto userDto,Integer userId);
 	UserDto getUserById(Integer userId);
 	//UserDto getAllUsers
 	
 	List<UserDto> getAllUsers();
-	void deleteUser(UserDto userDto,Integer userId);
+	//void deleteUser(UserDto userDto,Integer userId); wrong
+	
+	void deleteUser(Integer userId);
 	
 	
 	
